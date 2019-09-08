@@ -1,0 +1,279 @@
+{
+    "ApplicationName":"voting",
+    "DisplayName":"New-Age Election Portal",
+    "Description":"mordern voting system",
+    "ApplicationRoles":[
+        {
+            "Name":"authority",
+            "Description":"can view votes"
+        },
+        {
+            "Name":"voter",
+            "Description":"casts vote"
+        }
+    ],
+    "Workflows":[
+        {
+            "Name":"voting",
+            "DisplayName":"votingdis",
+            "Description":"holds current stage",
+            "Initiators":["voter"],
+            "StartState":"stage1",
+            "Properties":[
+                {
+                    "Name":"State",
+                    "DisplayName":"State",
+                    "Description":"Holds the state of the contract",
+                    "Type":{
+                        "Name":"state"
+                    
+                    }
+                },
+                {
+                    "Name":"voterid",
+                    "DisplayName":"Voter_id",
+                    "Description":"uniquekey",
+                    "Type":{
+                        "Name":"string"
+                    }
+                                
+                },
+                {
+                    "Name":"result",
+                    "DisplayName":"Result",
+                    "Description":"Result",
+                    "Type":{
+                        "Name":"string"
+                    }
+                },
+                {
+                    "Name":"Verification",
+                    "DisplayName":"Verification",
+                    "Description":"Check",
+                    "Type":{
+                        "Name":"string"
+                    }
+                },
+               {
+                    "Name":"votecasted",
+                    "DisplayName":"Voted-for-org",
+                    "Description":"list of candidates",
+                    "Type":{
+                       "Name":"string"
+                    }
+
+                },
+                {
+                    "Name":"CastedVote",
+                    "DisplayName":"Voted_for",
+                    "Description":"votecasting",
+                    "Type":{
+                        "Name":"string"
+                       }
+                    
+                    
+                }
+               
+                
+            ],
+            "Constructor":{
+                "Parameters":[
+              /*  {
+                "Name":"voter_id",
+                "Description":"unique identifier",
+                "DisplayName":"voterid",
+                "Type":{
+                    "Name":"string"
+                }
+            }*/
+                ]
+            },
+            "Functions":[
+            /*    {
+                    "Name":"verified",
+                    "DisplayName":"verified",
+                    "Description":"IF voter is verified execute this",
+                    "Parameters":[]
+                }, */
+                {
+                    "Name":"getKeccak256",
+                    "DisplayName":"getkeccak",
+                    "Description":"getar",
+                    "Parameters":[]
+
+                },
+                {
+                    "Name":"stage0p",
+                "DisplayName":"Check Result",
+                "Description":"vot",
+                "Parameters":[
+                    {
+                "Name":"voter_id",
+                "Description":"unique identifier",
+                "DisplayName":"Unique_id",
+                "Type":{
+                    "Name":"string"
+                }
+            }
+                ]
+                },
+               {
+                "Name":"stage0",
+                "DisplayName":"vote",
+                "Description":"vot",
+                "Parameters":[
+                    {
+                "Name":"voter_id",
+                "Description":"unique identifier",
+                "DisplayName":"Unique_id",
+                "Type":{
+                    "Name":"string"
+                }
+            }
+                ]
+               },
+                {
+                    "Name":"Candidate1",
+                    "DisplayName":"Candidate1",
+                    "Description":"executethistocastvote",
+                    "Parameters":[]  
+                },
+                {
+                    "Name":"result_count",
+                    "DisplayName":"Result",
+                    "Description":"Result",
+                    "Parameters":[]
+                },
+                {
+                    "Name":"Candidate2",
+                    "DisplayName":"Candidate2",
+                    "Description":"executethistocastvote",
+                    "Parameters":[] 
+
+                },
+                {
+                    "Name":"Candidate3",
+                    "DisplayName":"Candidate3",
+                    "Description":"executethistocastvote",
+                    "Parameters":[]
+                },
+                {
+                    "Name":"Candidate4",
+                    "DisplayName":"Candidate4",
+                    "Description":"executethistocastvote",
+                    "Parameters":[]
+                }
+          /*      {
+                    "Name":"retrivevote",
+                    "DisplayName":"retrivevotedis",
+                    "Description":"forthe voter to verify the voe casted by him",
+                    "Parameters":[]
+                }*/
+            ],
+            "States":[
+                {
+                    "Name":"stage0",
+                    "DisplayName":"Ready to vote",
+                    "Description":"Ready to vote",
+                    "PercentComplete":20,
+                    "Style":"Success",
+                    "Transitions":[
+                        {
+                            "AllowedRoles":["voter"],
+                            "AllowedInstanceRoles":[],
+                            "Description":"red",
+                            "Function":"stage0",
+                            "NextStates":["stage1"],
+                            "DisplayName":"stage0"
+                        },
+                        {
+                            "AllowedRoles":["authority"],
+                            "AllowedInstanceRoles":[],
+                            "Description":"red",
+                            "Function":"stage0p",
+                            "NextStates":["stage1"],
+                            "DisplayName":"stage0p"
+                        }
+                    ]
+                },
+                {
+                    "Name":"stage1",
+                    "DisplayName":"Ready to vote",
+                    "Description":"toverifyvoter",
+                    "PercentComplete":45,
+                    "Style":"Success",
+                    "Transitions":[
+                        {
+                            "AllowedRoles":["voter"],
+                            "AllowedInstanceRoles":[],
+                            "Description":"To verify voter",
+                            "Function":"Candidate1",
+                            "NextStates":["stage0"],
+                            "DisplayName":"stage1d"
+                        },
+                        {
+                            "AllowedRoles":["voter"],
+                            "AllowedInstanceRoles":[],
+                            "Description":"To verify voter",
+                            "Function":"Candidate2",
+                            "NextStates":["stage0"],
+                            "DisplayName":"stage1di"
+                        },
+                        {
+                            "AllowedRoles":["voter"],
+                            "AllowedInstanceRoles":[],
+                            "Description":"To verify voter",
+                            "Function":"Candidate3",
+                            "NextStates":["stage0"],
+                            "DisplayName":"stage1disP"
+                        },
+                        {
+                            "AllowedRoles":["voter"],
+                            "AllowedInstanceRoles":[],
+                            "Description":"To verify voter",
+                            "Function":"Candidate4",
+                            "NextStates":["stage0"],
+                            "DisplayName":"stage1dis"
+                        },
+                        {
+                            "AllowedRoles":["authority"],
+                            "AllowedInstanceRoles":[],
+                            "Description":"count",
+                            "Function":"result_count",
+                            "NextStates":["CastV"],
+                            "DisplayName":"count1"
+                        }
+                    ]
+                },
+                {
+                    "Name":"CastV",
+                    "DisplayName":"Successfully Casted",
+                    "Description":"descriptioncastv",
+                    "PercentComplete":100,
+                    "Style":"Success",
+                    "Transitions":[]
+                   /*     {
+                            "AllowedRoles":[],
+                            "AllowedInstanceRoles":[],
+                            "Description":"Catsvote",
+                           // "Function":"retrivevote",
+                            "NextStates":["happy"],
+                            "DisplayName":"castvdis"
+                        }
+                    ]*/
+                }
+             /*   {
+                    "Name":"happy",
+                    "DisplayName":"happydis",
+                    "Description":"verfyingvotecasted",
+                    "PercentComplete":100,
+                    "Style":"Success",
+                    "Transitions":[]
+
+                }*/
+               
+            ]
+
+        }
+    ]
+}
